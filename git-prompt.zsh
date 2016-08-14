@@ -14,9 +14,10 @@ _ready_to_commit_symbol="%{$fg[green]%}☻   "
 _has_untracked_files_symbol="%{$fg[red]%}✭  "
 _is_clean_symbol="%{$fg[green]%}✔ "
 _is_dirty_symbol="%{$fg[red]%}✘ "
-## Commits ahead and behind color
+# colors
 _commits_ahead_color="%{$fg[green]%}"
 _commits_behind_color="%{$fg[green]%}"
+_date_color="%{$fg[green]%}"
 
 ## Outputs the current branch into prompt
 function git_branch_info() {
@@ -70,7 +71,7 @@ function show_git_prompt() {
     prompt+=%{$reset_color%}
     echo -n "${prompt}"
   else
-    echo -n "$(date)"
+    echo -n "${_date_color}$(date)"
   fi
 }
 
@@ -83,7 +84,5 @@ function prompt_char {
 }
 
 PROMPT='${_background_color}${fg[green]%}╭─%n@%{$fg[yellow]%}%M %{$fg[red]%}%~${_newline}%}%{$fg[green]%}╰─$(prompt_char) %{$reset_color%}'
-#PROMPT='╭─%{$bg[white]%}%B%n@%M%{$fg[white]%}%{%b${_newline}%}%{╰─$(prompt_char)%b%}'
 
-#PROMPT='%{$bg[white]%}%n@)%m %(!.%1~.%~) %_$(prompt_char)%{$reset_color%}${_newline}$(prompt_exitstatus) '
-RPROMPT='%{${_lineup}%}$(show_git_prompt)%{${_linedown}%}'
+RPROMPT='%{${_lineup}%}$(show_git_prompt)%{${_linedown}%}%{$reset_color%}'
