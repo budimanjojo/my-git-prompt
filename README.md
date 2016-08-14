@@ -4,9 +4,9 @@
 ## Screenshots
 
 ### Dark Terminal
-
+![On black background terminal](https://s4.postimg.org/644we7fzt/dark.png)
 ### Light Terminal
-
+![On white background terminal](https://s4.postimg.org/yiaby33jt/light.png)
 
 ## Introduction
   This is a script to show nice symbols when you're inside your local git directory. It is similar to what [Oh-My-Git](https://github.com/arialdomartini/oh-my-git.git) and [Prezto Powerline Prompt](https://github.com/davidjrice/prezto_powerline) do, but the only difference is you don't need to have powerline and the patched fonts to show this prompt. This project is still **WIP** and I will keep improving it.
