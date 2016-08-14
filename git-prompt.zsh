@@ -18,22 +18,11 @@ _is_dirty_symbol="%{$fg[red]%}✘ "
 _commits_ahead_color="%{$fg[green]%}"
 _commits_behind_color="%{$fg[green]%}"
 
-## Outputs the current branch into prompt
-function git_branch_info() {
-  # check if it is a git directory
-  if [[ -d .git ]]; then
-    local is_a_git_repo=true
-  fi
-  if [[ $is_a_git_repo == true ]]; then
-    local git_branch_prompt="$(git name-rev --name-only --no-undefined --always HEAD 2> /dev/null)"
-    echo "$GIT_PROMPT_BRANCH_PREFIX$git_branch_prompt$GIT_PROMPT_BRANCH_SUFFIX"
-  fi
-}
-
 ## Check if git is dirty or clean
 function show_git_prompt() {
   # check if it is a git repository
-  if [[ -d .git ]]; then
+  local check_is_git="$(git rev-parse --is-inside-work-tree 2> /dev/null)"
+  if [[ $check_is_git == "true" ]]; then
     local is_a_git_repo=true; fi
   if [[ $is_a_git_repo == true ]]; then
   local prompt="${_background_color}"
