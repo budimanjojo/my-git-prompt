@@ -14,6 +14,9 @@ _ready_to_commit_symbol="%{$fg[green]%}☻   "
 _has_untracked_files_symbol="%{$fg[red]%}✭  "
 _is_clean_symbol="%{$fg[green]%}✔ "
 _is_dirty_symbol="%{$fg[red]%}✘ "
+_enable_right_return_status=yes
+_return_status_color="%{$fg[red]%}"
+_enable_right_date=no
 # colors
 _commits_ahead_color="%{$fg[green]%}"
 _commits_behind_color="%{$fg[green]%}"
@@ -57,11 +60,12 @@ function show_git_prompt() {
   else
     prompt+="${_is_clean_symbol}";
   fi
-    prompt+=%{$reset_color%}
-    echo -n "${prompt}"
-  else
-    echo -n "${_date_color}$(date)"
-  fi
+  prompt+=%{$reset_color%}
+  echo -n "${prompt}"
+else
+  prompt="$(right_date)"
+  echo -n "${prompt}"
+fi
 }
 
 _newline=$'\n'
@@ -72,6 +76,18 @@ function prompt_char {
 	if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
 }
 
+function right_date() {
+  if [[ ${_enable_right_date} == "yes" ]]; then
+    echo "${_date_color}%D{%a,%d %b %y}"
+  fi
+}
+
+function right_return_code() {
+  if [[ ${_enable_right_return_status} == "yes" ]]; then
+    echo "${_return_status_color} %?↵ "
+  fi
+}
+
 PROMPT='${_background_color}${fg[green]%}╭─%n@%{$fg[yellow]%}%M %{$fg[red]%}%~${_newline}%}%{$fg[green]%}╰─$(prompt_char) %{$reset_color%}'
 
-RPROMPT='%{${_lineup}%}$(show_git_prompt)%{${_linedown}%}%{$reset_color%}'
+RPROMPT='%{${_lineup}%}$(show_git_prompt)$(right_return_code)%{${_linedown}%}%{$reset_color%}'
