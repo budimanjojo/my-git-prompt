@@ -1,3 +1,4 @@
+# (DEPRECIATED) THIS PROJECT HAS BEEN MOVED TO [JOJO ZSH PROMPT](https://github.com/budimanjojo/jojo-zsh-prompt). NOW BECOMES A ZSH THEME MANAGER WITH BUILT-IN GIT SUPPORT.
 # My Git Prompt
 ===============
 
